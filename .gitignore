@@ -17,3 +17,5 @@
 
 # Jetty and its data dirs are transient
 jetty
+
+/.ruby*
