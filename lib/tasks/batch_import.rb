@@ -63,15 +63,6 @@ module Bibliocat
         }
       end
 
-      def Helpers.structure_array(struct_string, delimiter = '--')
-        result = struct_string.split(delimiter)
-        result.each_with_index do |value, index|
-          result[index] = result[index - 1] + delimiter + value unless index == 0
-        end
-        result
-      end
-
-
       def Helpers.import_manifest(subdir, manifest)
         if manifest["works"].nil? or manifest["works"].empty?
           puts "ABORTING: No works listed in manifest."
@@ -127,8 +118,11 @@ module Bibliocat
 
           print "\nUpdating work index.\n"
           work.reload
-          work.update_index
-          print "Done.\n\n"
+          if work.update_index
+            print "Done.\n\n"
+          else
+            print "Failed to index."
+          end
 
         end
       end
