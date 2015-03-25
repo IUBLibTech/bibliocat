@@ -1,0 +1,16 @@
+---
+manifest:
+  id: mybatch
+  date: 12-1-2014
+works:
+- descMetadata:
+    title: A Test Work
+    creator: The Tester
+    contributor: The Helper
+    description: A test Work
+    subject: Testing
+    publisher: TestPub
+    language: Testish
+    rights: http://creativecommons.org/licenses/by-nc-sa/3.0/us/
+  content:
+    image: test.png
