@@ -1,10 +1,8 @@
 source 'https://rubygems.org'
 
-#gem 'worthwhile', :git => "https://github.com/projecthydra-labs/worthwhile.git", :ref => '92221695093474702c05699a36373f576d31f8bb'
-#gem 'worthwhile', :path => "/usr/local/rvm/gems/ruby-2.1.5@biblio/bundler/gems/worthwhile-2af43e99fc6d"
-#gem 'worthwhile-models', :path => "/usr/local/rvm/gems/ruby-2.1.5@biblio/bundler/gems/worthwhile-2af43e99fc6d/worthwhile-models"
 gem 'worthwhile'
 gem 'worthwhile-models'
+gem 'thin', '1.6.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
