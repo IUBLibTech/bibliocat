@@ -2,8 +2,10 @@
 #  `rails generate worthwhile:work BiblioWork`
 class BiblioWork < ActiveFedora::Base
   include ::CurationConcern::Work
-  include ::CurationConcern::WithBasicMetadata
+#  include ::CurationConcern::WithBasicMetadata
+  include BiblioConcern::WithBasicMetadata
 
+=begin
   def to_solr(solr_doc={}, opts={})
     super(solr_doc, opts)
     # TODO Figure out what new fields to write to Solr using following example
@@ -16,5 +18,5 @@ class BiblioWork < ActiveFedora::Base
     solr_doc[Solrizer.solr_name('note_source', 'tesim')] = self.source
     return solr_doc
   end
-
+=end
 end
