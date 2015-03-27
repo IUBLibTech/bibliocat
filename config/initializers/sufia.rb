@@ -11,6 +11,8 @@ Sufia.config do |config|
 
   config.max_days_between_audits = 7
 
+  config.minter_statefile = '/tmp/biblio-minter-state'
+
   config.max_notifications_for_dashboard = 5
 
   config.cc_licenses = {
