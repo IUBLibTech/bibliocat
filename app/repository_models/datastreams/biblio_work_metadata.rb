@@ -1,3 +1,3 @@
 class BiblioWorkMetadata < ActiveFedora::NtriplesRDFDatastream
-#  include BiblioWorkRdfProperties
+  include BiblioWorkRdfProperties
 end
