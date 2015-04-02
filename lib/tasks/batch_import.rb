@@ -86,7 +86,8 @@ module Bibliocat
         end
         if work_attributes.any?
           begin
-            work = BiblioWork.new(work_attributes)
+            #work = BiblioWork.new(work_attributes)
+            work = Worthwhile::CurationConcern.actor(BiblioWork.new, User.find_by_email('dlpierce@indiana.edu'), work_attributes)
           rescue
             puts "ABORTING WORKS CREATION: invalid contents of descMetadata:"
             puts work_attributes.inspect
@@ -107,22 +108,22 @@ module Bibliocat
         end
         if work
           #TODO: check for failed connection
-          if work.save
-            print "Work object #{work.pid} successfully created.\n"
+          if work.create
+            print "Work object #{work.curation_concern.pid} successfully created.\n"
           else
             puts "ABORTING WORKS CREATION: problem saving work object"
-            puts work.errors.messages
+            puts work.curation_concern.errors.messages
             return
           end
 
 
-          print "\nUpdating work index.\n"
-          work.reload
-          if work.update_index
-            print "Done.\n\n"
-          else
-            print "Failed to index."
-          end
+          # print "\nUpdating work index.\n"
+          # work.reload
+          # if work.update_index
+          #   print "Done.\n\n"
+          # else
+          #   print "Failed to index."
+          # end
 
         end
       end
