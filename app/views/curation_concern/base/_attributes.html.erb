@@ -4,15 +4,15 @@
     <tr><th>Attribute Name</th><th>Values</th></tr>
   </thead>
   <tbody>
-  <%= curation_concern_attribute_to_html(curation_concern, :description, t('blacklight.search.fields.show.desc_metadata__description_tesim')) %>
-  <%= curation_concern_attribute_to_html(curation_concern, :creator, 'Creator', { catalog_search_link: true }) %>
-  <%= curation_concern_attribute_to_html(curation_concern, :contributor, 'Contributors', { catalog_search_link: true }) %>
-  <%= curation_concern_attribute_to_html(curation_concern, :subject, "SSubject", { catalog_search_link: true }) %>
-  <%= curation_concern_attribute_to_html(curation_concern, :publisher, "Publisher") %>
+  <%= curation_concern_attribute_to_html(curation_concern, :description, t('bibliocat.fields.RDF::DC.description')) %>
+  <%= curation_concern_attribute_to_html(curation_concern, :creator, t('bibliocat.fields.RDF::DC.creator'), { catalog_search_link: true }) %>
+  <%= curation_concern_attribute_to_html(curation_concern, :contributor, t('bibliocat.fields.RDF::DC.contributor'), { catalog_search_link: true }) %>
+  <%= curation_concern_attribute_to_html(curation_concern, :subject, t('bibliocat.fields.RDF::DC.subject'), { catalog_search_link: true }) %>
+  <%= curation_concern_attribute_to_html(curation_concern, :publisher, t('bibliocat.fields.RDF::DC.publisher')) %>
   <%#= curation_concern_attribute_to_html(curation_concern, :bibliographic_citation, "Bibliographic Citation") %>
-  <%= curation_concern_attribute_to_html(curation_concern, :coverage, "Coverage") %>
-  <%= curation_concern_attribute_to_html(curation_concern, :source, "Source") %>
-  <%= curation_concern_attribute_to_html(curation_concern, :language, "Language") %>
+  <%= curation_concern_attribute_to_html(curation_concern, :coverage, t('bibliocat.fields.RDF::DC.coverage')) %>
+  <%= curation_concern_attribute_to_html(curation_concern, :source, t('bibliocat.fields.RDF::DC.source')) %>
+  <%= curation_concern_attribute_to_html(curation_concern, :language, t('bibliocat.fields.RDF::DC.language')) %>
   <tr>
     <th>Access Rights</th>
     <td>
