@@ -56,6 +56,13 @@ module Bibliocat
                               'subject' => options['subject'],
                               'publisher' => options['publisher'],
                               'language' => options['language'],
+                              'visibility' => options['visibility'],
+                              'visibility_during_embargo' => options['visibility_during_embargo'],
+                              'embargo_release_date' => options['embargo_release_date'],
+                              'visibility_after_embargo' => options['visibility_after_embargo'],
+                              'visibility_during_lease' => options['visibility_during_lease'],
+                              'lease_expiration_date' => options['lease_expiration_date'],
+                              'visibility_after_lease' => options['visibility_after_lease'],
                               'rights' => options['rights']
         },
           'content' => { 'image' => options['image']
