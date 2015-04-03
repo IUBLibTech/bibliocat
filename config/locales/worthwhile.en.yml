@@ -1,0 +1,7 @@
+en:
+  blacklight:
+    search:
+      fields:
+        facet:
+          human_readable_type_sim: Collections
+
