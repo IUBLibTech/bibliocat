@@ -4,13 +4,21 @@ manifest:
   date: 12-1-2014
 works:
 - descMetadata:
-    title: A Test Work
-    creator: The Tester
-    contributor: The Helper
-    description: A test Work
-    subject: Testing
-    publisher: TestPub
-    language: Testish
+    title:
+    - A Test Work
+    creator:
+    - The Tester
+    - The Other Guy
+    contributor:
+    - The Helper
+    description:
+    - A test Work
+    subject:
+    - Testing
+    publisher:
+    - TestPub
+    language:
+    - Testish
     visibility: authenticated
     visibility_during_embargo: restricted
     embargo_release_date: '2015-04-03'
