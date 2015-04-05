@@ -8,7 +8,7 @@ module Bibliocat
 
     module Tasks
 
-      def Tasks.batch_import
+      def Tasks.batch_import(user_email)
         Helpers::ingest_folders.each_with_index do |subdir, index|
           print "Ingesting batch directory #{index + 1} of #{Helpers::ingest_folders.size}: #{subdir}\n"
           manifest_files = Dir.glob(subdir + "/" + "manifest*.yml").select { |f| File.file?(f) }
@@ -21,7 +21,7 @@ module Bibliocat
                 manifest = nil
               end
               print "Found manifest file: #{manifest_filename}\n"
-              Helpers::import_manifest(subdir, manifest) unless manifest.nil?
+              Helpers::import_manifest(subdir, manifest, user_email) unless manifest.nil?
             end
           else
             print "No manifest YAML files found in this directory.\n"
@@ -73,18 +73,18 @@ module Bibliocat
         }
       end
 
-      def Helpers.import_manifest(subdir, manifest)
+      def Helpers.import_manifest(subdir, manifest, user_email)
         if manifest["works"].nil? or manifest["works"].empty?
           puts "ABORTING: No works listed in manifest."
         else
           manifest["works"].each do |work|
             print "Importing work: #{work['descMetadata'] && work['descMetadata']['title'] ? work['descMetadata']['title'] : '(title unavailable)'}\n"
-            import_work(subdir, work)
+            import_work(subdir, work, user_email)
           end
         end
       end
 
-      def Helpers.import_work(subdir, work_yaml)
+      def Helpers.import_work(subdir, work_yaml, user_email)
         work_attributes = {}
         begin
           work_yaml["descMetadata"].each_pair do |key, value|
@@ -94,6 +94,7 @@ module Bibliocat
           puts "ABORTING WORKS CREATION: invalid structure in descMetadata"
           return
         end
+
         begin
           imagePath = Rails.root + subdir + "content/"
           work_yaml["content"].each_pair do |key, value|
@@ -104,12 +105,19 @@ module Bibliocat
           puts "ABORTING WORKS CREATION: invalid structure in content"
           return
         end
+
+        begin
+          ingest_user = User.find_by_email(user_email)
+        rescue
+          puts "ABORTING WORKS CREATION: could not find user"
+          return
+        end
+
         if work_attributes.any?
           begin
-            #work = BiblioWork.new(work_attributes)
-            work = Worthwhile::CurationConcern.actor(BiblioWork.new, User.find_by_email('dlpierce@indiana.edu'), work_attributes)
+            work = Worthwhile::CurationConcern.actor(BiblioWork.new, ingest_user, work_attributes)
           rescue
-            puts "ABORTING WORKS CREATION: invalid contents of descMetadata:"
+            puts "ABORTING WORKS CREATION: creation of CurationConcern failed:"
             puts work_attributes.inspect
             return
           end
