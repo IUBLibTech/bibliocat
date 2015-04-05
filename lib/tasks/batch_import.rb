@@ -48,7 +48,9 @@ module Bibliocat
         }
       end
 
+      # Seems unused
       def Helpers.work_hash(options = {})
+        imagePath = Rails.root + subdir + "content/" + options['image']
         { 'descMetadata' => { 'title' => options['title'],
                               'creator' => options['creator'],
                               'contributor' => options['contributor'],
@@ -63,7 +65,8 @@ module Bibliocat
                               'visibility_during_lease' => options['visibility_during_lease'],
                               'lease_expiration_date' => options['lease_expiration_date'],
                               'visibility_after_lease' => options['visibility_after_lease'],
-                              'rights' => options['rights']
+                              'rights' => options['rights'],
+                              'files' => open(imagePath)
         },
           'content' => { 'image' => options['image']
           }
@@ -91,6 +94,16 @@ module Bibliocat
           puts "ABORTING WORKS CREATION: invalid structure in descMetadata"
           return
         end
+        begin
+          imagePath = Rails.root + subdir + "content/"
+          work_yaml["content"].each_pair do |key, value|
+             file_to_ingest = IngestableFile.open(imagePath + value, 'rb')
+             work_attributes['files'] = file_to_ingest
+          end
+        rescue
+          puts "ABORTING WORKS CREATION: invalid structure in content"
+          return
+        end
         if work_attributes.any?
           begin
             #work = BiblioWork.new(work_attributes)
@@ -101,18 +114,7 @@ module Bibliocat
             return
           end
         end
-        if work_yaml["content"] && work_yaml["content"]["image"]
-          begin
-            imagePath = Rails.root + subdir + "content/" + work_yaml["content"]["image"]
-            print "Adding image file.\n"
-            #MIGHT NEED NEW OBJECT HERE paged.pagedXML.content = File.open(xmlPath)
-          rescue
-            puts "ABORTING WORKS CREATION: unable to open image file: #{imagePath}"
-            return
-          end
-        else
-          print "No image file specified.\n"
-        end
+
         if work
           #TODO: check for failed connection
           if work.create
