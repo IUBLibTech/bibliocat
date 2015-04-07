@@ -1,5 +1,5 @@
 en:
-  bibliocat:
+  bibliowork:
     fields:
       RDF::DC:
         title: "Title"
