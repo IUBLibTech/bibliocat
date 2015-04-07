@@ -1,5 +1,5 @@
 en:
-  bibliocat:
+  bibliowork:
     fields:
       RDF::DC:
         title: "Title"
@@ -19,4 +19,7 @@ en:
         human_readable_type: "Resource Type"
         format: "File Format"
         identifier: "Identifier"
+      RDF::MO:
+        title: "MO Title"
+        description: "MO Description"
 
