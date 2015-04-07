@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 module Bibliocat
   class Application < Rails::Application
     
+    config.autoload_paths += Dir[Rails.root.join('app', 'repository_models', '{**}')]
     config.generators do |g|
       g.test_framework :rspec, :spec => true
     end
