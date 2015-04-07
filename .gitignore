@@ -19,3 +19,7 @@
 jetty
 
 /.ruby*
+
+# Rubymine files
+*.iml
+.idea/
