@@ -1,0 +1,31 @@
+---
+manifest:
+  id: mybatch
+  date: 12-1-2014
+works:
+- descMetadata:
+    title:
+    - A Test Work
+    creator:
+    - The Tester
+    - The Other Guy
+    contributor:
+    - The Helper
+    description:
+    - A test Work
+    subject:
+    - Testing
+    publisher:
+    - TestPub
+    language:
+    - Testish
+    visibility: authenticated
+    visibility_during_embargo: restricted
+    embargo_release_date: '2015-04-03'
+    visibility_after_embargo: open
+    visibility_during_lease: open
+    lease_expiration_date: '2015-04-03'
+    visibility_after_lease: restricted
+    rights: http://creativecommons.org/licenses/by-nc-sa/3.0/us/
+  content:
+    image: test.png
