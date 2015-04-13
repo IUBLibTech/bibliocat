@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   # these methods in order to perform user specific actions. 
 
   include Worthwhile::ThemedLayoutController
+  self.theme = 'bibliocat'
   with_themed_layout '1_column'
 
 
