@@ -2,24 +2,30 @@ en:
   bibliowork:
     fields:
       RDF::DC:
-        title: "Title"
-        description: "Description"
-        creator: "Creator"
-        subject: "Subject"
-        contributor: "Contributor"
-        publisher: "Publisher"
-        coverage: "Coverage"
-        source: "Source"
-        based_near: "Location"
-        language: "Language"
-        date_uploaded: "Date Uploaded"
-        date_modified: "Date Modified"
-        date_created: "Date Created"
-        rights: "Rights"
-        human_readable_type: "Resource Type"
-        format: "File Format"
-        identifier: "Identifier"
-      RDF::MO:
-        title: "MO Title"
-        description: "MO Description"
-
+        title:
+          label: "Title"
+          multiple: "true"
+        description:
+          label: "Description"
+          multiple: "false"
+        creator:
+          label: "Creator"
+          multiple: "true"
+        subject:
+          label: "Subject"
+          multiple: "true"
+        contributor:
+          label: "Contributor"
+          multiple: "true"
+        publisher:
+          label: "Publisher"
+          multiple: "true"
+        coverage:
+          label: "Coverage"
+          multiple: "true"
+        source:
+          label: "Source"
+          multiple: "true"
+        language:
+          label: "Language"
+          multiple: "false"
