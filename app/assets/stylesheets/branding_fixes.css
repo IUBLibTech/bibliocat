@@ -1,0 +1,13 @@
+/*#branding-bar-v1 { z-index: 1005; }*/
+#footer-v1 { margin-top: 40px; }
+#brand-bar-wrapper {
+    border:0;
+    background-image: none;
+    padding: 0;}
+#title-bar-wrapper {
+    background-image: none;
+    background-color: #E1D8B7;
+    border-top: 1px solid black;
+    padding-top: 20px;
+    border: 0;
+}
