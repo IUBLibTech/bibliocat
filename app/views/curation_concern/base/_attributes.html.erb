@@ -8,7 +8,7 @@
   <% vocabs = I18n.t 'bibliowork.fields' %>
   <% vocabs.each do |vocab, fields| %>
     <% fields.each do |key, value| %>
-       <%= curation_concern_attribute_to_html(curation_concern, key, t(value)) %>
+       <%= curation_concern_attribute_to_html(curation_concern, key, t(value[:label])) %>
     <% end %>
   <% end %>
 
