@@ -18,15 +18,6 @@ module BiblioConcern::WithBasicMetadata
         multiple: value[:multiple].to_s == 'true' ? true : false
       end
     end
-
-=begin
-    # Single-value fields
-    has_attributes :created, :date_modified, :date_uploaded, datastream: :descMetadata, multiple: false
-    # Multi-value fields
-    has_attributes :contributor, :creator, :coverage, :date, :description, :content_format, :identifier,
-                    :language, :publisher, :relation, :rights, :source, :subject, :title, :type,
-                    datastream: :descMetadata, multiple: true
-=end
   end
 
 
