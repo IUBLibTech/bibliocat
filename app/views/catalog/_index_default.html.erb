@@ -1,0 +1,14 @@
+<%# default partial to display solr document fields in catalog index view -%>
+<dl class="document-metadata dl-horizontal dl-invert">
+
+  <% vocabs = I18n.t 'bibliowork.fields' %>
+  <% vocabs.each do |vocab, fields| %>
+      <% fields.each do |key, value| %>
+          <% if document.respond_to?(key) && value[:views].include?('index') %>
+              <dt class="blacklight-<%= key %>"><%= value[:label] %></dt>
+              <dd class="blacklight-<%= key %>"><%= document.send(key) %></dd>
+          <% end %>
+      <% end %>
+  <% end %>
+
+</dl>
