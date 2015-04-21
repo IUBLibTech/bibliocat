@@ -11,7 +11,8 @@ module BiblioConcern::WithBasicMetadata
     has_attributes :created, :date_modified, :date_uploaded, datastream: :descMetadata, multiple: false
 
     # Descriptive metadata from vocabularies
-    vocabs = I18n.t 'bibliowork.fields'
+    work_type = self.human_readable_type
+    vocabs = I18n.t work_type + '.fields'
     vocabs.each do |vocab, fields|
       fields.each do |key, value|
         has_attributes key, datastream: 'descMetadata',
