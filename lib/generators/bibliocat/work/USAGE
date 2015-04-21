@@ -1,0 +1,20 @@
+Description:
+  This generator creates the necessary files for work that extends
+  Bibliocat's BiblioWork.
+
+Example:
+  rails generate bibliocat:work BibCollection
+
+  This will create:
+    app/repository_models/bib_collection.rb
+    app/actors/curation_concern/bib_collection_actor.rb
+    app/controllers/curation_concern/bib_collections_controller.rb
+    app/views/curation_concern/bib_collections/.keep
+    spec/factories/bib_collection_factory.rb
+    spec/repository_models/bib_collection_spec.rb
+    spec/actors/curation_concern/bib_collection_actor_spec.rb
+    spec/controllers/curation_concern/bib_collections_controller_spec.rb
+
+  This will also:
+    register BibCollection as a valid curation concern in
+      config/initializers/worthwhile_config.rb
