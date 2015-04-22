@@ -5,7 +5,8 @@
   </thead>
   <tbody>
 
-  <% vocabs = I18n.t 'bibliowork.fields' %>
+  <% work_type = curation_concern.human_readable_type %>
+  <% vocabs = I18n.t work_type + '.fields' %>
   <% vocabs.each do |vocab, fields| %>
     <% fields.each do |key, value| %>
        <%= curation_concern_attribute_to_html(curation_concern, key, t(value[:label])) %>
