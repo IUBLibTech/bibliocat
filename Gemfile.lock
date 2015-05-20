@@ -53,6 +53,10 @@ GEM
       tzinfo (~> 1.1)
     acts_as_follower (0.2.1)
     addressable (2.3.7)
+    ammeter (1.1.2)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-rails (>= 2.2)
     arel (5.0.1.20140414130214)
     autoparse (0.3.3)
       addressable (>= 2.3.1)
@@ -466,6 +470,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ammeter
   coffee-rails (~> 4.0.0)
   devise
   devise-guests (~> 0.3)
