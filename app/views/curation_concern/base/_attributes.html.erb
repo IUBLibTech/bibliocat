@@ -6,10 +6,17 @@
   <tbody>
 
   <% work_type = curation_concern.human_readable_type %>
-  <% vocabs = I18n.t work_type + '.fields' %>
+  <% if i18n_set? work_type + '.fields' %>
+    <% vocabs =  I18n.t work_type + '.fields' %>
+  <% else %>
+    <% vocabs =  I18n.t 'Generic Work.fields' %>
+  <% end %>
+
   <% vocabs.each do |vocab, fields| %>
     <% fields.each do |key, value| %>
-       <%= curation_concern_attribute_to_html(curation_concern, key, t(value[:label])) %>
+       <% if (curation_concern.respond_to? key) %>
+         <%= curation_concern_attribute_to_html(curation_concern, key, t(value[:label])) %>
+       <% end %>
     <% end %>
   <% end %>
 

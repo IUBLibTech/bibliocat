@@ -3,7 +3,7 @@ en:
     fields:
       RDF::DC:
         title:
-          label: "Title"
+          label: "Biblio Title"
           multiple: "true"
           views: "index,show,edit" 
         description:
