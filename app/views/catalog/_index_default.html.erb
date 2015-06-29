@@ -1,7 +1,13 @@
 <%# default partial to display solr document fields in catalog index view -%>
 <dl class="document-metadata dl-horizontal dl-invert">
 
-  <% vocabs = I18n.t 'Generic Work.fields' %>
+  <% work_type = document.human_readable_type %>
+  <% if i18n_set? work_type + '.fields' %>
+      <% vocabs =  I18n.t work_type + '.fields' %>
+  <% else %>
+      <% vocabs =  I18n.t 'Generic Work.fields' %>
+  <% end %>
+
   <% vocabs.each do |vocab, fields| %>
       <% fields.each do |key, value| %>
           <% if document.respond_to?(key) && value[:views].include?('index') %>
