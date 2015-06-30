@@ -1,12 +1,10 @@
 FactoryGirl.define do
   
-  #Create a page object
-  factory :page, class: Page do
-    logical_number "Page 1"
-
-    trait :unchecked do
-      skip_linkage_validation true
-    end
+  #Create a WorkType object
+  factory :work_type, class: WorkType do
+    registered_name "FactoryWork"
+    display_name "Factory Work"
+    is_type_of "BiblioWork"
   end
   
 end
