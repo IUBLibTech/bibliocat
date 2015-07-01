@@ -16,8 +16,7 @@ describe 'WorkType features' do
     fill_in 'Is type of', with: 'BiblioWork'
     click_button 'Create Work type'
     #TO-DO FIX-ME Why doesn't this path helper work here?
-    #assert_equal current_path, work_types_path
-    assert_equal current_path, '/work_types'
+    page.has_content?('Feature work type')
   end
 
   it "can edit work types" do
