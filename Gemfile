@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'worthwhile'
 gem 'worthwhile-models'
 gem 'thin', '1.6.2'
+gem 'ammeter'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
