@@ -15,5 +15,17 @@
   <%= @work_type.is_type_of %>
 </p>
 
+<p>
+  <strong>Schema File:</strong>
+     <% if @work_type.schema_file.has_content? %>
+       <%= link_to @work_type.schema_datastream.label,
+                  ActiveFedora.fedora_config.credentials[:url] +
+                    '/' + @work_type.schema_datastream.url %>
+     <% else %>
+       none.
+     <% end %>
+</p>
+
+
 <%= link_to 'Edit', edit_work_type_path(@work_type) %> |
 <%= link_to 'Back', work_types_path %>

@@ -19,7 +19,7 @@ class WorkType < ActiveFedora::Base
     @datastreams['metadataSchema']
   end
 
-  def xml_datastream
+  def schema_datastream
     @datastreams['metadataSchema']
   end
 

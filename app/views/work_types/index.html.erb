@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Work Types</h1>
+<h1>Work Types Manager</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Registered Name </th>
+      <th>Name </th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -13,7 +13,7 @@
   <tbody>
     <% @work_types.each do |work_type| %>
       <tr>
-        <td><%= work_type.registered_name %></td>
+        <td><%= work_type.display_name %></td>
         <td><%= link_to 'Show', work_type %></td>
         <td><%= link_to 'Edit', edit_work_type_path(work_type) %></td>
         <td><%= link_to 'Destroy', work_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -23,6 +23,28 @@
     <%= f.label :is_type_of %><br>
     <%= f.text_field :is_type_of %>
   </div>
+
+  <ul>
+   <% if !@work_type.new? %>
+      <li class='field'>
+        <span class="form_label">Current Schema File</span>
+        <span class="form_field">
+        <% if @work_type.schema_datastream.has_content? %>
+          <%= link_to @work_type.schema_datastream.label, ActiveFedora.fedora_config.credentials[:url] + '/' + @work_type.schema_datastream.url %>
+        <% else %>
+          none.
+        <% end %>
+        </span>
+      </li>
+    <% end %>
+    
+    <li class='field'>
+      <%= f.label 'Select new Schema File' %>
+      <%= f.file_field :schema_file %>
+    </li>
+  </ul>
+
+
   <div class="actions">
     <%= f.submit %>
   </div>
