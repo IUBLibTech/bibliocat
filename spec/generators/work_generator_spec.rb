@@ -21,7 +21,9 @@ describe Bibliocat::WorkGenerator, :type => :generator do
          locale: 'config/locales/new_type.en.yml',
          controller_spec: 'spec/controllers/curation_concern/new_types_controller_spec.rb',
          actor_spec: 'spec/actors/curation_concern/new_type_actor_spec.rb',
-         spec: 'spec/repository_models/new_type_spec.rb' }
+         model_spec: 'spec/repository_models/new_type_spec.rb',
+         config: 'config/initializers/worthwhile_config.rb'
+        }
       }
 
       before do
@@ -52,10 +54,22 @@ describe Bibliocat::WorkGenerator, :type => :generator do
         #it { is_expected.to contain /class NewType/ }
         it { is_expected.to have_correct_syntax }
       end
-      describe 'has specs' do
-        subject { file(files[:spec]) }
+      describe 'has model specs' do
+        subject { file(files[:model_spec]) }
         it { is_expected.to exist }
-        #it { is_expected.to contain /class NewType/ }
+        it { is_expected.to contain /describe NewType/ }
+        it { is_expected.to have_correct_syntax }
+      end
+      describe 'has controller specs' do
+        subject { file(files[:controller_spec]) }
+        it { is_expected.to exist }
+        it { is_expected.to contain /describe CurationConcern::NewType/ }
+        it { is_expected.to have_correct_syntax }
+      end
+      describe 'has actor specs' do
+        subject { file(files[:actor_spec]) }
+        it { is_expected.to exist }
+        it { is_expected.to contain /describe CurationConcern::NewType/ }
         it { is_expected.to have_correct_syntax }
       end
       describe 'has metadata configuration' do
@@ -64,7 +78,13 @@ describe Bibliocat::WorkGenerator, :type => :generator do
         #it { is_expected.to contain /class NewType/ }
         it 'is_expected.to have_correct_syntax'
       end
-      describe 'is a registered concern'
+      describe 'is a registered concern' do
+        subject { file(files[:config]) }
+        it { is_expected.to exist }
+        it { is_expected.to contain 'Worthwhile.configure do |config|' }
+        it { is_expected.to contain 'config.register_curation_concern :new_type' }
+        it { is_expected.to have_correct_syntax }
+      end
       describe 'has metadata methods matching the configuration'
     end
 end
