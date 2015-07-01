@@ -18,7 +18,7 @@
 <p>
   <strong>Schema File:</strong>
      <% if @work_type.schema_file.has_content? %>
-       <%= link_to @work_type.schema_datastream.label,
+       <%= link_to @work_type.schema_datastream.dsid,
                   ActiveFedora.fedora_config.credentials[:url] +
                     '/' + @work_type.schema_datastream.url %>
      <% else %>

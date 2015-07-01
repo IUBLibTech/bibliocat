@@ -30,7 +30,7 @@
         <span class="form_label">Current Schema File</span>
         <span class="form_field">
         <% if @work_type.schema_datastream.has_content? %>
-          <%= link_to @work_type.schema_datastream.label, ActiveFedora.fedora_config.credentials[:url] + '/' + @work_type.schema_datastream.url %>
+          <%= link_to @work_type.schema_datastream.dsid, ActiveFedora.fedora_config.credentials[:url] + '/' + @work_type.schema_datastream.url %>
         <% else %>
           none.
         <% end %>
