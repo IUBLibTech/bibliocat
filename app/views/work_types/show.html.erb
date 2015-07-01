@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Registered Name:</strong>
+  <%= @work_type.registered_name %>
+</p>
+
+<p>
+  <strong>Display Name:</strong>
+  <%= @work_type.display_name %>
+</p>
+
+<p>
+  <strong>Is Type Of:</strong>
+  <%= @work_type.is_type_of %>
+</p>
+
+<p>
+  <strong>Schema File:</strong>
+     <% if @work_type.schema_file.has_content? %>
+       <%= link_to @work_type.schema_datastream.dsid,
+                  ActiveFedora.fedora_config.credentials[:url] +
+                    '/' + @work_type.schema_datastream.url %>
+     <% else %>
+       none.
+     <% end %>
+</p>
+
+
+<%= link_to 'Edit', edit_work_type_path(@work_type) %> |
+<%= link_to 'Back', work_types_path %>

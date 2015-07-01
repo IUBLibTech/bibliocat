@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :work_types
   root :to => "catalog#index"
   blacklight_for :catalog
   devise_for :users
