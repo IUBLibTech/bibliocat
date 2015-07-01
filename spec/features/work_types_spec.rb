@@ -7,12 +7,14 @@ describe 'WorkType features' do
     #TO-DO FIX-ME Why doesn't this path helper work here?
     #visit work_types_path
     visit '/work_types'
-    click_button 'New type'
-    assert_equal current_path, new_work_type_path
+    click_link 'New Work type'
+    #TO-DO FIX-ME Why doesn't this path helper work here?
+    #assert_equal current_path, new_work_type_path
+    assert_equal current_path, '/work_types/new'
     fill_in 'Registered name', with: 'FeatureType'
     fill_in 'Display name', with: 'Feature work type'
     fill_in 'Is type of', with: 'BiblioWork'
-    click_button 'Save type'
+    click_button 'Create Work type'
     #TO-DO FIX-ME Why doesn't this path helper work here?
     #assert_equal current_path, work_types_path
     assert_equal current_path, '/work_types'

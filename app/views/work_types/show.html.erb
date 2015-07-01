@@ -1,13 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @work_type.title %>
+  <strong>Registered Name:</strong>
+  <%= @work_type.registered_name %>
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @work_type.description %>
+  <strong>Display Name:</strong>
+  <%= @work_type.display_name %>
+</p>
+
+<p>
+  <strong>Is Type Of:</strong>
+  <%= @work_type.is_type_of %>
 </p>
 
 <%= link_to 'Edit', edit_work_type_path(@work_type) %> |
