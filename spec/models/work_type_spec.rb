@@ -6,7 +6,7 @@ describe WorkType do
 
   describe "FactoryGirl" do
     let(:valid_work_type) { FactoryGirl.build :work_type }
-    let(:unchecked_work_type) { FactoryGirl.build :work_type, :unchecked }
+
 
     it "provides a valid work_type" do
       expect(valid_work_type).to be_valid
