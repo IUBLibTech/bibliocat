@@ -1,0 +1,51 @@
+<%= form_for(@work_type) do |f| %>
+  <% if @work_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@work_type.errors.count, "error") %> prohibited this work_type from being saved:</h2>
+
+      <ul>
+      <% @work_type.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :registered_name %><br>
+    <%= f.text_field :registered_name %>
+  </div>
+  <div class="field">
+    <%= f.label :display_name %><br>
+    <%= f.text_field :display_name %>
+  </div>
+  <div class="field">
+    <%= f.label :is_type_of %><br>
+    <%= f.text_field :is_type_of %>
+  </div>
+
+  <ul>
+   <% if !@work_type.new? %>
+      <li class='field'>
+        <span class="form_label">Current Schema File</span>
+        <span class="form_field">
+        <% if @work_type.schema_datastream.has_content? %>
+          <%= link_to @work_type.schema_datastream.dsid, ActiveFedora.fedora_config.credentials[:url] + '/' + @work_type.schema_datastream.url %>
+        <% else %>
+          none.
+        <% end %>
+        </span>
+      </li>
+    <% end %>
+    
+    <li class='field'>
+      <%= f.label 'Select new Schema File' %>
+      <%= f.file_field :schema_file %>
+    </li>
+  </ul>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
