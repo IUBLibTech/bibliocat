@@ -13,11 +13,15 @@ module CurationConcern
 
     end
 
+    # Commit to a secondary Solr index
     def save
       super
       Thread.new do
-        ActiveFedora::SolrService.register('http://localhost:8983/solr/spotlight')
-        curation_concern.update_index
+        solr_url = I18n.t "#{curation_concern.human_readable_type}.solr_url"
+        if /^http/ =~ solr_url
+          ActiveFedora::SolrService.register(solr_url)
+          curation_concern.update_index
+        end
       end
     end
 
