@@ -4,11 +4,11 @@ en:
     fields:
       RDF::DC:
         title:
-          label: "Title"
+          label: "Opera Title"
           multiple: "true"
           views: "index,show,edit" 
         description:
-          label: "Description"
+          label: "Opera Description"
           multiple: "false"
           views: "index,show,edit" 
         creator:
