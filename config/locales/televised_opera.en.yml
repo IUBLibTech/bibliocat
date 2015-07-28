@@ -43,14 +43,6 @@ en:
           label: "Language"
           multiple: "false"
           views: "show,edit" 
-        content_format:
-          label: "Content Format"
-          multiple: "false"
-          views: "show,edit" 
-        rights:
-          label: "Rights"
-          multiple: "false"
-          views: "show,edit"
       RDF::MO:
         composer:
           label: "Opera Composer"

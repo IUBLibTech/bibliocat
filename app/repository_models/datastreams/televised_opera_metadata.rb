@@ -13,10 +13,11 @@ class TelevisedOperaMetadata < ActiveFedora::NtriplesRDFDatastream
       vocabs =  I18n.t 'Generic Work.fields' 
     end 
 
-   vocabs.each do |vocab, fields|
+    vocabs.each do |vocab, fields|
       fields.each do |key, value|
-        #class_send(vocab, method)
-        Object.const_get(vocab.to_s).send(key.to_sym)
+        property key.to_sym, predicate: class_send(vocab.to_s,key.to_s) do |index|
+          index.as :stored_searchable, :facetable
+        end
       end
     end
 
