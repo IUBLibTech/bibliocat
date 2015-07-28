@@ -51,3 +51,12 @@ en:
           label: "Rights"
           multiple: "false"
           views: "show,edit"
+      RDF::MO:
+        composer:
+          label: "Opera Composer"
+          multiple: "true"
+          views: "index,show,edit" 
+        engineer:
+          label: "TV Engineer"
+          multiple: "true"
+          views: "index,show,edit" 
