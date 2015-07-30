@@ -7,27 +7,36 @@ class TelevisedOperaMetadata < ActiveFedora::NtriplesRDFDatastream
 
     # Map properties from vocabularies
     work_type = 'Televised Opera' 
+    # FIXME Why doesn't my custom i18n_set method work?
+=begin
     if self.i18n_set? work_type + '.fields' 
       vocabs =  I18n.t work_type + '.fields' 
     else 
       vocabs =  I18n.t 'Generic Work.fields' 
     end 
+=end
+    vocabs =  I18n.t work_type + '.fields' 
 
     vocabs.each do |vocab, fields|
-      fields.each do |key, value|
-        property key.to_sym, predicate: class_send(vocab.to_s,key.to_s) do |index|
-          index.as :stored_searchable, :facetable
+      unless vocab.to_s == 'RDF::DC'
+        fields.each do |key, value|
+          # FIXME Why doesn't my custom class_send method work?
+          #property key.to_sym, predicate: class_send(vocab.to_s,key.to_s) do |index|
+          property key.to_sym, predicate: Object.const_get(vocab.to_s).send(key.to_sym) do |index|
+            index.as :stored_searchable, :facetable
+          end
         end
       end
     end
 
+=begin
     property :composer, predicate: RDF::MO.composer do |index|
       index.as :stored_searchable
     end
     property :engineer, predicate: RDF::MO.engineer do |index|
       index.as :stored_searchable, :facetable
     end
-
+=end
 
   # We need a way to check for classes that can return methods for our vocab names
   def class_send(class_name, method, *args)
@@ -36,7 +45,7 @@ class TelevisedOperaMetadata < ActiveFedora::NtriplesRDFDatastream
     c.respond_to?(method) ? c.send(method, *args) : nil
   end
 
-  # FIXME We won't always drive vocabs with locales but for now we need a helper for sanity checks
+  # TODO We won't always drive vocabs with locales but for now we need a helper for sanity checks
   def i18n_set? key
       I18n.t key, :raise => true rescue false
   end
