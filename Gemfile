@@ -50,3 +50,4 @@ group :development, :test do
   gem "jettywrapper"
   gem "capybara"
 end
+gem 'rdf-vocab'

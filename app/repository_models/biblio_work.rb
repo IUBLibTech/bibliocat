@@ -6,6 +6,8 @@ class BiblioWork < ActiveFedora::Base
   # include ::CurationConcern::WithBasicMetadata
   include BiblioConcern::WithBasicMetadata
 
+  has_metadata "descMetadata", type: ::BiblioWorkMetadata
+
   def to_solr(solr_doc={}, opts={})
     super(solr_doc, opts)
     # These extra fields are being written so as to be picked up by Spotlight
