@@ -42,7 +42,7 @@ en:
         language:
           label: "Language"
           multiple: "false"
-          views: "show,edit" 
+          views: "show,edit"
         content_format:
           label: "Content Format"
           multiple: "false"
@@ -50,4 +50,22 @@ en:
         rights:
           label: "Rights"
           multiple: "false"
-          views: "show,edit"
+          views: "show,edit" 
+      RDF::MO:
+        composer:
+          label: "Opera Composer"
+          multiple: "true"
+          views: "index,show,edit" 
+        engineer:
+          label: "TV Engineer"
+          multiple: "true"
+          views: "index,show,edit" 
+      "RDF::EbuCore http://www.ebu.ch/metadata/ontologies/ebucore#":
+        duration:
+          label: "Duration"
+          multiple: "false"
+          views: "index,show,edit" 
+        TVProgramme:
+          label: "Program Name"
+          multiple: "false"
+          views: "index,show,edit"

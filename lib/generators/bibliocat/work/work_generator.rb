@@ -46,6 +46,10 @@ class Bibliocat::WorkGenerator < Rails::Generators::NamedBase
     template("controller.rb.erb", "app/controllers/curation_concern/#{plural_file_name}_controller.rb")
   end
 
+  def create_metadata
+    template("metadata.rb.erb", "app/repository_models/datastreams/#{file_name}_metadata.rb")
+  end
+
   def create_actor
     template("actor.rb.erb", "app/actors/curation_concern/#{file_name}_actor.rb")
   end
