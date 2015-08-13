@@ -511,6 +511,3 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   worthwhile
   worthwhile-models
-
-BUNDLED WITH
-   1.10.5
