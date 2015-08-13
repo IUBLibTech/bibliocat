@@ -1,4 +1,13 @@
-class TelevisedOperaMetadata < ActiveFedora::NtriplesRDFDatastream
+# Generated via
+#  `rails generate bibliocat:work <%= class_name %>`
+
+class CurationConcern::<%= class_name.pluralize %>Controller < ApplicationController
+  include Worthwhile::CurationConcernController
+  set_curation_concern_type <%= class_name %>
+end
+
+
+class <%= class_name.pluralize %>Metadata < ActiveFedora::NtriplesRDFDatastream
   include BiblioWorkRdfProperties
 
 
@@ -9,7 +18,7 @@ class TelevisedOperaMetadata < ActiveFedora::NtriplesRDFDatastream
     # We will check first to hopefully find the named vocab in RDF:: or RDF::Vocab.
     # Failing that we will create a vocab definition on the fly, providing we have a URI
 
-    work_type = 'Televised Opera'
+    work_type = '<%= class_name.titleize %>'
 
     if i18n_set? work_type + '.fields'
       vocabs =  I18n.t work_type + '.fields'
