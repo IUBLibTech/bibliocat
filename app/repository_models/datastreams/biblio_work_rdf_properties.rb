@@ -8,6 +8,9 @@ module BiblioWorkRdfProperties
     property :title, predicate: RDF::DC.title do |index|
       index.as :stored_searchable, :facetable
     end
+    property :alternative, predicate: RDF::DC.alternative do |index|
+      index.as :stored_searchable, :facetable
+    end
     property :creator, predicate: RDF::DC.creator do |index|
       index.as :stored_searchable, :facetable
     end
