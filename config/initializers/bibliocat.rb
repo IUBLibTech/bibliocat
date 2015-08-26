@@ -1,9 +1,11 @@
 # Be sure to restart your server when you modify this file.
 require 'yaml'
 
+
 work_type_config = Rails.root.join("config", 'work_types', "bibliowork.yml").to_s
 Settings.add_source!(work_type_config)
 Settings.reload!
+puts "Available work types with configuration #{Settings.work_types.keys.inspect}"
 
 listener = Listen.to(Rails.root.join("config", 'work_types')) do |modified, added, removed|
     puts "Added #{added}"
@@ -12,6 +14,7 @@ listener = Listen.to(Rails.root.join("config", 'work_types')) do |modified, adde
     puts "Added #{added}"
   end
   Settings.reload!
+  puts "Available work types with configuration #{Settings.work_types.keys.inspect}"
 end
 listener.start
 

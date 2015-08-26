@@ -1,4 +1,4 @@
-en:
+work_types:
   Biblio Work:
     solr_url: "http://localhost:8983/solr/spotlight"
     fields:
@@ -48,6 +48,6 @@ en:
           multiple: "false"
           views: "show,edit" 
         rights:
-          label: "Rights"
+          label: "What Rights?"
           multiple: "false"
           views: "show,edit"

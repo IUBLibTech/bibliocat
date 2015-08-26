@@ -3,10 +3,6 @@ module BiblioConcern::WithBasicMetadata
 
   included do 
 
-    def self.i18n_set? key
-      I18n.t key, :raise => true rescue false
-    end
-
     #has_metadata "descMetadata", type: ::BiblioWorkMetadata
 
     # Validations that apply to all types of Work AND Collections
@@ -17,10 +13,11 @@ module BiblioConcern::WithBasicMetadata
 
     # Descriptive metadata from vocabularies
     work_type = self.human_readable_type 
-    if self.i18n_set? work_type + '.fields' 
-      vocabs =  I18n.t work_type + '.fields' 
+
+    unless Settings.work_types.to_hash[work_type.to_sym].nil?
+      vocabs =  Settings.work_types.to_hash[work_type.to_sym][:fields]
     else 
-      vocabs =  I18n.t 'Generic Work.fields' 
+      vocabs =  Settings.work_types.to_hash['Biblio Work'.to_sym][:fields]
     end 
 
     vocabs.each do |vocab, fields|

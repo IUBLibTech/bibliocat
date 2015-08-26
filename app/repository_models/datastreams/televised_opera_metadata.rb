@@ -10,13 +10,11 @@ class TelevisedOperaMetadata < ActiveFedora::NtriplesRDFDatastream
     # Failing that we will create a vocab definition on the fly, providing we have a URI
 
     work_type = 'Televised Opera'
-
-    if i18n_set? work_type + '.fields'
-      vocabs =  I18n.t work_type + '.fields'
-    else
-      vocabs =  I18n.t 'Generic Work.fields'
-    end
-    # vocabs =  I18n.t work_type + '.fields'
+    unless Settings.work_types.to_hash[work_type.to_sym].nil?
+      vocabs =  Settings.work_types.to_hash[work_type.to_sym][:fields]
+    else 
+      vocabs =  Settings.work_types.to_hash['Biblio Work'.to_sym][:fields]
+    end 
 
     # For every vocab section in the config, take each field and setup a property mapping
     vocabs.each do |vocab, fields|
@@ -38,11 +36,6 @@ class TelevisedOperaMetadata < ActiveFedora::NtriplesRDFDatastream
         end
       end
     end
-  end
-
-  # TODO We won't always drive vocabs with locales but for now we need a helper for sanity checks
-  def i18n_set? key
-    I18n.t key, :raise => true rescue false
   end
 
 end
