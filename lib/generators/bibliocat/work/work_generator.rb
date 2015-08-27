@@ -83,7 +83,7 @@ class Bibliocat::WorkGenerator < Rails::Generators::NamedBase
       work_type.schema_file = File.open(Rails.root + "config/locales/#{file_name}.en.yml")
     rescue
       puts "No schema found in config/locales/#{file_name}.en.yml"
-      work_type.schema_file = File.open(Rails.root + "config/locales/bibliowork.en.yml")
+      work_type.schema_file = File.open(Rails.root + "config/work_types/bibliowork.en.yml")
     end
     if work_type.save
       print "\"#{class_name}\" WorkType saved to Fedora."
