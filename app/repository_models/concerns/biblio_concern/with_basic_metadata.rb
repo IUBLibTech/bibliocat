@@ -15,16 +15,14 @@ module BiblioConcern::WithBasicMetadata
     work_type = self.human_readable_type 
 
     unless Settings.work_types.to_hash[work_type.to_sym].nil?
-      vocabs =  Settings.work_types.to_hash[work_type.to_sym][:fields]
+      fields =  Settings.work_types.to_hash[work_type.to_sym][:fields]
     else 
-      vocabs =  Settings.work_types.to_hash['Biblio Work'.to_sym][:fields]
+      fields =  Settings.work_types.to_hash['Biblio Work'.to_sym][:fields]
     end 
 
-    vocabs.each do |vocab, fields|
-      fields.each do |key, value|
-        has_attributes key, datastream: 'descMetadata',
-        multiple: value[:multiple].to_s == 'true' ? true : false
-      end
+    fields.each do |field, props|
+      has_attributes field, datastream: 'descMetadata',
+      multiple: props[:multiple].to_s == 'true' ? true : false
     end
 
     def to_solr(solr_doc={}, opts={})

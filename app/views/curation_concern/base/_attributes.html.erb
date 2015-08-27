@@ -7,16 +7,14 @@
 
   <% work_type = curation_concern.human_readable_type %>
   <% unless Settings.work_types.to_hash[work_type.to_sym].nil? %>
-      <% vocabs =  Settings.work_types.to_hash[work_type.to_sym][:fields] %>
+      <% fields =  Settings.work_types.to_hash[work_type.to_sym][:fields] %>
   <% else %>
-      <% vocabs =  Settings.work_types.to_hash['Biblio Work'.to_sym][:fields] %>
+      <% fields =  Settings.work_types.to_hash['Biblio Work'.to_sym][:fields] %>
   <% end %>
 
-  <% vocabs.each do |vocab, fields| %>
-    <% fields.each do |key, value| %>
-       <% if (curation_concern.respond_to? key) %>
-         <%= curation_concern_attribute_to_html(curation_concern, key, t(value[:label])) %>
-       <% end %>
+  <% fields.each do |field, props| %>
+    <% if (curation_concern.respond_to? field) %>
+     <%= curation_concern_attribute_to_html(curation_concern, field, t(props[:label])) %>
     <% end %>
   <% end %>
 

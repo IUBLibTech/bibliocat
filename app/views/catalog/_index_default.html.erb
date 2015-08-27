@@ -3,17 +3,15 @@
 
   <% work_type = document.human_readable_type %>
   <% unless Settings.work_types.to_hash[work_type.to_sym].nil? %>
-      <% vocabs =  Settings.work_types.to_hash[work_type.to_sym][:fields] %>
+      <% fields =  Settings.work_types.to_hash[work_type.to_sym][:fields] %>
   <% else %>
-      <% vocabs =  Settings.work_types.to_hash['Biblio Work'.to_sym][:fields] %>
+      <% fields =  Settings.work_types.to_hash['Biblio Work'.to_sym][:fields] %>
   <% end %>
 
-  <% vocabs.each do |vocab, fields| %>
-      <% fields.each do |key, value| %>
-          <% if document.respond_to?(key) && value[:views].include?('index') %>
-              <dt class="blacklight-<%= key %>"><%= value[:label] %></dt>
-              <dd class="blacklight-<%= key %>"><%= document.send(key) %></dd>
-          <% end %>
+  <% fields.each do |field, props| %>
+      <% if document.respond_to?(field) && props[:views].include?('index') %>
+          <dt class="blacklight-<%= field %>"><%= props[:label] %></dt>
+          <dd class="blacklight-<%= field %>"><%= document.send(field) %></dd>
       <% end %>
   <% end %>
 
