@@ -5,10 +5,10 @@ require 'yaml'
 # It relies on the config gem to parse configuration files and make hashes available via Settings object,
 # and it relies on the listen gem to watch a directory for changes.
 
-# Inspect config/work_types directory to get initial list of current files to add to work type settings 
-Dir.glob('config/work_types/**/*').reject do |work_type_config|
-  puts "Adding #{work_type_config.to_s} to work type settings"
-  Settings.add_source!(Rails.root.join(work_type_config).to_s)
+work_type_path = Rails.root.join("config", 'work_types')
+raise "bibliowork.yml is required" unless (work_type_path + "bibliowork.yml").exist?
+work_type_path.each_child do |c|
+  Settings.add_source!(c.to_s)
 end
 Settings.reload!
 puts "Available work types with configuration #{Settings.work_types.keys.inspect}"

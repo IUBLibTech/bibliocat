@@ -3,19 +3,18 @@
 
   <% work_type = curation_concern.human_readable_type %>
   <% unless Settings.work_types.to_hash[work_type.to_sym].nil? %>
-      <% vocabs =  Settings.work_types.to_hash[work_type.to_sym][:fields] %>
+      <% fields =  Settings.work_types.to_hash[work_type.to_sym][:fields] %>
   <% else %>
-      <% vocabs =  Settings.work_types.to_hash['Biblio Work'.to_sym][:fields] %>
+      <% fields =  Settings.work_types.to_hash['Biblio Work'.to_sym][:fields] %>
   <% end %>
 
-  <% vocabs.each do |vocab, fields| %>
-    <% fields.each do |key, value| %>
-       <% if (curation_concern.respond_to? key) %>
-         <%= f.input key, label: value[:label], 
-          as: value[:multiple].to_s == 'true' ? :multi_value : :text,
-          input_html: { class: 'form-control' } %>
-       <% end %>
+  <% fields.each do |field, props| %>
+    <% if (curation_concern.respond_to? field) %>
+     <%= f.input field, label: props[:label],
+      as: props[:multiple].to_s == 'true' ? :multi_value : :text,
+      input_html: { class: 'form-control' } %>
     <% end %>
+
   <% end %>
 
 </fieldset>

@@ -28,8 +28,8 @@ class Bibliocat::WorkGenerator < Rails::Generators::NamedBase
     template("model.rb.erb", "app/repository_models/#{file_name}.rb")
   end
 
-  def configure_locale
-    template("locale.yml.erb", "config/locales/#{file_name}.en.yml")
+  def configure_work_type
+    template("work_type.yml.erb", "config/work_types/#{file_name}.en.yml")
   end
 
   def create_controller_spec
@@ -80,10 +80,10 @@ class Bibliocat::WorkGenerator < Rails::Generators::NamedBase
     is_type_of = 'BiblioWork'
     work_type = WorkType.new(registered_name: class_name, display_name: class_name.titleize, is_type_of: is_type_of)
     begin
-      work_type.schema_file = File.open(Rails.root + "config/locales/#{file_name}.en.yml")
+      work_type.schema_file = File.open(Rails.root + "config/work_types/#{file_name}.yml")
     rescue
-      puts "No schema found in config/locales/#{file_name}.en.yml"
-      work_type.schema_file = File.open(Rails.root + "config/locales/bibliowork.en.yml")
+      puts "No schema found in config/work_types/#{file_name}.yml"
+      work_type.schema_file = File.open(Rails.root + "config/work_types/bibliowork.yml")
     end
     if work_type.save
       print "\"#{class_name}\" WorkType saved to Fedora."
