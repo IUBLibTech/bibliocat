@@ -2,12 +2,15 @@
 require 'yaml'
 
 
-work_type_config = Rails.root.join("config", 'work_types', "bibliowork.yml").to_s
-Settings.add_source!(work_type_config)
+work_type_path = Rails.root.join("config", 'work_types')
+raise "bibliowork.yml is required" unless (work_type_path + "bibliowork.yml").exist?
+work_type_path.each_child do |c|
+  Settings.add_source!(c.to_s)
+end
 Settings.reload!
 puts "Available work types with configuration #{Settings.work_types.keys.inspect}"
 
-listener = Listen.to(Rails.root.join("config", 'work_types')) do |modified, added, removed|
+listener = Listen.to(work_type_path) do |modified, added, removed|
     puts "Added #{added}"
   unless added[0].nil? 
     Settings.add_source!(added[0])
