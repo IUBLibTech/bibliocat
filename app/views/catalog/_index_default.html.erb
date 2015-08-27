@@ -2,18 +2,16 @@
 <dl class="document-metadata dl-horizontal dl-invert">
 
   <% work_type = document.human_readable_type %>
-  <% if i18n_set? work_type + '.fields' %>
-      <% vocabs =  I18n.t work_type + '.fields' %>
+  <% unless Settings.work_types.to_hash[work_type.to_sym].nil? %>
+      <% fields =  Settings.work_types.to_hash[work_type.to_sym][:fields] %>
   <% else %>
-      <% vocabs =  I18n.t 'Generic Work.fields' %>
+      <% fields =  Settings.work_types.to_hash['Biblio Work'.to_sym][:fields] %>
   <% end %>
 
-  <% vocabs.each do |vocab, fields| %>
-      <% fields.each do |key, value| %>
-          <% if !document[Solrizer.solr_name("desc_metadata__#{key}")].nil? && value[:views].include?('index') %>
-              <dt class="blacklight-<%= key %>"><%= value[:label] %></dt>
-              <dd class="blacklight-<%= key %>"><%= document[Solrizer.solr_name("desc_metadata__#{key}")].to_sentence %></dd>
-          <% end %>
+  <% fields.each do |field, props| %>
+      <% if !document[Solrizer.solr_name("desc_metadata__#{field}")].nil? && props[:views].include?('index') %>
+          <dt class="blacklight-<%= field %>"><%= props[:label] %></dt>
+          <dd class="blacklight-<%= field %>"><%= document[Solrizer.solr_name("desc_metadata__#{field}")].to_sentence %></dd>
       <% end %>
   <% end %>
 

@@ -10,39 +10,31 @@ class TelevisedOperaMetadata < ActiveFedora::NtriplesRDFDatastream
     # Failing that we will create a vocab definition on the fly, providing we have a URI
 
     work_type = 'Televised Opera'
-
-    if i18n_set? work_type + '.fields'
-      vocabs =  I18n.t work_type + '.fields'
-    else
-      vocabs =  I18n.t 'Generic Work.fields'
-    end
-    # vocabs =  I18n.t work_type + '.fields'
+    unless Settings.work_types.to_hash[work_type.to_sym].nil?
+      fields =  Settings.work_types.to_hash[work_type.to_sym][:fields]
+    else 
+      fields =  Settings.work_types.to_hash['Biblio Work'.to_sym][:fields]
+    end 
 
     # For every vocab section in the config, take each field and setup a property mapping
-    vocabs.each do |vocab, fields|
-      unless vocab.to_s == 'RDF::DC'
-        vocab_name, uri = vocab.to_s.split
-        fields.each do |key, value|
-          # Handle custom vocab with a URI by creating it on the fly
-          if uri
-            this_vocab = RDF::Vocabulary.new(uri)
-            self.class.property key.to_sym, predicate: this_vocab[key] do |index|
-              index.as :stored_searchable, :facetable
-            end
-          else
-            # Handle vocabularies available in either RDF:: or RDF::Vocab
-            self.class.property key.to_sym, predicate: vocab_name.safe_constantize.try(key.to_sym) do |index|
-              index.as :stored_searchable, :facetable
-            end
+    fields.each do |field, props|
+      unless props[:vocab].to_s == 'RDF::DC'
+        vocab_name = props[:vocab]
+        vocab_uri = props[:vocab_uri]
+        # Handle custom vocab with a URI by creating it on the fly
+        if vocab_uri
+          this_vocab = RDF::Vocabulary.new(vocab_uri)
+          self.class.property field.to_sym, predicate: this_vocab[field] do |index|
+            index.as :stored_searchable, :facetable
+          end
+        else
+          # Handle vocabularies available in either RDF:: or RDF::Vocab
+          self.class.property field.to_sym, predicate: vocab_name.safe_constantize.try(field.to_sym) do |index|
+            index.as :stored_searchable, :facetable
           end
         end
       end
     end
-  end
-
-  # TODO We won't always drive vocabs with locales but for now we need a helper for sanity checks
-  def i18n_set? key
-    I18n.t key, :raise => true rescue false
   end
 
 end

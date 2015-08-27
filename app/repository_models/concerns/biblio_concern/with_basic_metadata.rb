@@ -3,10 +3,6 @@ module BiblioConcern::WithBasicMetadata
 
   included do 
 
-    def self.i18n_set? key
-      I18n.t key, :raise => true rescue false
-    end
-
     #has_metadata "descMetadata", type: ::BiblioWorkMetadata
 
     # Validations that apply to all types of Work AND Collections
@@ -17,17 +13,16 @@ module BiblioConcern::WithBasicMetadata
 
     # Descriptive metadata from vocabularies
     work_type = self.human_readable_type 
-    if self.i18n_set? work_type + '.fields' 
-      vocabs =  I18n.t work_type + '.fields' 
+
+    unless Settings.work_types.to_hash[work_type.to_sym].nil?
+      fields =  Settings.work_types.to_hash[work_type.to_sym][:fields]
     else 
-      vocabs =  I18n.t 'Generic Work.fields' 
+      fields =  Settings.work_types.to_hash['Biblio Work'.to_sym][:fields]
     end 
 
-    vocabs.each do |vocab, fields|
-      fields.each do |key, value|
-        has_attributes key, datastream: 'descMetadata',
-        multiple: value[:multiple].to_s == 'true' ? true : false
-      end
+    fields.each do |field, props|
+      has_attributes field, datastream: 'descMetadata',
+      multiple: props[:multiple].to_s == 'true' ? true : false
     end
 
     def to_solr(solr_doc={}, opts={})
@@ -37,9 +32,6 @@ module BiblioConcern::WithBasicMetadata
       solr_doc[Solrizer.solr_name('full_title', 'tesim')] = self.title
       solr_doc[Solrizer.solr_name('personal_name', 'ssm')] = self.creator
       solr_doc[Solrizer.solr_name('abstract', 'tesim')] = self.description
-      solr_doc[Solrizer.solr_name('note_desc_note', 'tesim')] = self.contributor
-      solr_doc[Solrizer.solr_name('corporate_name', 'ssm')] = self.publisher
-      solr_doc[Solrizer.solr_name('note_provenance', 'tesim')] = self.coverage
       solr_doc[Solrizer.solr_name('note_source', 'tesim')] = self.source
       return solr_doc
     end

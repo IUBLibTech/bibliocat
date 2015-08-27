@@ -1,52 +1,65 @@
-en:
-  Generic Work:
+work_types:
+  <%= class_name.titleize %>:
+    solr_url: "http://localhost:8983/solr/<%= class_name.underscore %>_spotlight"
     fields:
       RDF::DC:
         title:
-          label: "Title"
+          vocab: "RDF::DC"
+          label: "Biblio Title"
           multiple: "true"
-          views: "index,show,edit" 
+          views: "index,show,edit"
         description:
+          vocab: "RDF::DC"
           label: "Description"
           multiple: "false"
-          views: "index,show,edit" 
+          views: "index,show,edit"
         creator:
+          vocab: "RDF::DC"
           label: "Creator"
           multiple: "true"
-          views: "index,show,edit" 
+          views: "index,show,edit"
         contributor:
+          vocab: "RDF::DC"
           label: "Contributor"
           multiple: "true"
-          views: "index,show,edit" 
+          views: "index,show,edit"
         subject:
+          vocab: "RDF::DC"
           label: "Subject"
           multiple: "true"
-          views: "index,show,edit" 
+          views: "index,show,edit"
         publisher:
+          vocab: "RDF::DC"
           label: "Publisher"
           multiple: "true"
-          views: "show,edit" 
+          views: "show,edit"
         date:
+          vocab: "RDF::DC"
           label: "Published Date"
           multiple: "true"
-          views: "show,edit" 
+          views: "show,edit"
         coverage:
+          vocab: "RDF::DC"
           label: "Coverage"
           multiple: "true"
-          views: "show,edit" 
+          views: "show,edit"
         source:
+          vocab: "RDF::DC"
           label: "Source"
           multiple: "true"
-          views: "show,edit" 
+          views: "show,edit"
         language:
+          vocab: "RDF::DC"
           label: "Language"
           multiple: "false"
-          views: "show,edit" 
+          views: "show,edit"
         content_format:
+          vocab: "RDF::DC"
           label: "Content Format"
           multiple: "false"
-          views: "show,edit" 
+          views: "show,edit"
         rights:
-          label: "Rights"
+          vocab: "RDF::DC"
+          label: "What Rights?"
           multiple: "false"
           views: "show,edit"
