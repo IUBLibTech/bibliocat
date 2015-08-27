@@ -15,7 +15,7 @@ module CurationConcern
     def save
       super
       Thread.new do
-        solr_url = I18n.t "#{curation_concern.human_readable_type}.solr_url"
+        Settings.work_types.to_hash["#{curation_concern.human_readable_type}.to_sym"][:solr_url]
         ActiveFedora::SolrService.register(solr_url)
         curation_concern.update_index
       end

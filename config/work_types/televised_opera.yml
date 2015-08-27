@@ -1,0 +1,174 @@
+work_types:
+  Televised Opera:
+    solr_url: "http://localhost:8983/solr/televised_opera_spotlight"
+    fields:
+      RDF::DC:
+        title:
+          label: "Work title"
+          multiple: "false"
+          views: "index,show,edit" 
+        alternative:
+          label: "Piece alt"
+          multiple: "false"
+          views: "index,show,edit"
+        creator:
+          label: "Text Author"
+          multiple: "false"
+          views: "index,show,edit" 
+        date:
+          label: "Production year"
+          multiple: "false"
+          views: "index,show,edit"
+        language:
+          label: "Language"
+          multiple: "false"
+          views: "index,show,edit"
+        created:
+          label: "Recorded"
+          multiple: "false"
+          views: "index,show,edit"
+        content_format:
+          label: "Technical info"
+          multiple: "false"
+          views: "index,show,edit"
+        description:
+          label: "Info"
+          multiple: "true"
+          views: "index,show,edit"
+        source:
+          label: "Source mat"
+          multiple: "false"
+          views: "index,show,edit"
+      RDF::Vocab::EBUCore:
+        duration:
+          label: "Duration"
+          multiple: "false"
+          views: "index,show,edit"
+        Genre:
+          label: "Genre"
+          multiple: "true"
+          views: "index,show,edit"
+        Series:
+          label: "Series title"
+          multiple: "false"
+          views: "index,show,edit"
+        alternativeTitle:
+          label: "Series title alt"
+          multiple: "false"
+          views: "index,show,edit"
+        OriginalLanguage:
+          label: "Translation"
+          multiple: "false"
+          views: "index,show,edit"
+        partName:
+          label: "Part"
+          multiple: "false"
+          views: "index,show,edit"
+        publicationChannelName:
+          label: "Transmitter/Outlet"
+          multiple: "false"
+          views: "index,show,edit"
+        script:
+          label: "script"
+          multiple: "false"
+          views: "index,show,edit"
+        Collection:
+          label: "archive"
+          multiple: "false"
+          views: "index,show,edit"
+      RDF::Vocab::MO:
+        composer:
+          label: "Composer"
+          multiple: "false"
+          views: "index,show,edit" 
+        conductor:
+          label: "Conductor"
+          multiple: "false"
+          views: "index,show,edit" 
+        Orchestration:
+          label: "Orchestra"
+          multiple: "false"
+          views: "index,show,edit" 
+        MusicGroup:
+          label: "Choir"
+          multiple: "false"
+          views: "index,show,edit" 
+        singer:
+          label: "Soloist"
+          multiple: "true"
+          views: "index,show,edit" 
+        Stream:
+          label: "Webcast"
+          multiple: "false"
+          views: "index,show,edit" 
+      "RDF::theaterOntology http://purl.org/theater/":
+        put_on_by:
+          label: "Company"
+          multiple: "false"
+          views: "index,show,edit" 
+        ProductionCompany:
+          label: "Production Co."
+          multiple: "false"
+          views: "index,show,edit" 
+      "RDF::programmeOntology http://purl.org/ontology/po/":
+        FirstBroadcast:
+          label: "Broadcast date"
+          multiple: "false"
+          views: "index,show,edit" 
+        director:
+          label: "TV Director"
+          multiple: "false"
+          views: "index,show,edit" 
+        author:
+          label: "Author"
+          multiple: "false"
+          views: "index,show,edit" 
+        broadcaster:
+          label: "Presenting Station"
+          multiple: "false"
+          views: "index,show,edit" 
+        executive_producer:
+          label: "Executive producer"
+          multiple: "false"
+          views: "index,show,edit" 
+        producer:
+          label: "producer"
+          multiple: "false"
+          views: "index,show,edit" 
+      "RDF::televisedOpera http://dlib.indiana.edu/lib/ontology/televisedOpera/":
+        choreography:
+          label: "Choreography"
+          multiple: "false"
+          views: "index,show,edit" 
+        danceCompany:
+          label: "Dance company"
+          multiple: "false"
+          views: "index,show,edit" 
+        stageDirector:
+          label: "Stage director"
+          multiple: "false"
+          views: "index,show,edit" 
+        adaptation:
+          label: "Adaptation"
+          multiple: "false"
+          views: "index,show,edit" 
+        sets:
+          label: "Sets"
+          multiple: "false"
+          views: "index,show,edit" 
+        costumes:
+          label: "Constumes"
+          multiple: "false"
+          views: "index,show,edit" 
+        vhsDistributor:
+          label: "HV VHS"
+          multiple: "false"
+          views: "index,show,edit" 
+        dvdDistributor:
+          label: "HV DVD"
+          multiple: "false"
+          views: "index,show,edit" 
+        otherDistributor:
+          label: "HV Other"
+          multiple: "false"
+          views: "index,show,edit" 

@@ -4,6 +4,8 @@ gem 'worthwhile'
 gem 'worthwhile-models'
 gem 'thin', '1.6.2'
 gem 'ammeter'
+gem 'listen', '~> 3.0'
+gem 'config'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'

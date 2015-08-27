@@ -6,10 +6,10 @@
   <tbody>
 
   <% work_type = curation_concern.human_readable_type %>
-  <% if i18n_set? work_type + '.fields' %>
-    <% vocabs =  I18n.t work_type + '.fields' %>
+  <% unless Settings.work_types.to_hash[work_type.to_sym].nil? %>
+      <% vocabs =  Settings.work_types.to_hash[work_type.to_sym][:fields] %>
   <% else %>
-    <% vocabs =  I18n.t 'Generic Work.fields' %>
+      <% vocabs =  Settings.work_types.to_hash['Biblio Work'.to_sym][:fields] %>
   <% end %>
 
   <% vocabs.each do |vocab, fields| %>
