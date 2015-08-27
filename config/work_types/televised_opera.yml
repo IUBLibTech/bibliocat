@@ -1,6 +1,6 @@
 work_types:
   Televised Opera:
-    solr_url: "http://localhost:8983/solr/televised_opera_spotlight"
+    solr_url: "http://localhost:8983/solr/spotlight"
     fields:
       title:
         vocab: "RDF::DC"
