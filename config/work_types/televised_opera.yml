@@ -2,6 +2,11 @@ work_types:
   Televised Opera:
     solr_url: "http://localhost:8983/solr/spotlight"
     fields:
+      title:
+        vocab: "RDF::DC"
+        label: "Work Title"
+        multiple: "false"
+        views: "index,show,edit"
       duration:
         vocab: "RDF::Vocab::EBUCore"
         label: "Duration"
@@ -31,11 +36,6 @@ work_types:
         vocab: "RDF::TheaterOntology"
         vocab_uri: "http://purl.org/theater/"
         label: "Company"
-        multiple: "false"
-        views: "index,show,edit"
-      title:
-        vocab: "RDF::DC"
-        label: "Work Title"
         multiple: "false"
         views: "index,show,edit"
       alternative:
