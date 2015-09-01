@@ -2,54 +2,14 @@ work_types:
   Televised Opera:
     solr_url: "http://localhost:8983/solr/spotlight"
     fields:
-      title:
-        vocab: "RDF::DC"
-        label: "Opera Title"
-        multiple: "false"
-        views: "index,show,edit"
-      alternative:
-        vocab: "RDF::DC"
-        label: "Piece alt"
-        multiple: "false"
-        views: "index,show,edit"
-      creator:
-        vocab: "RDF::DC"
-        label: "Text Author"
+      duration:
+        vocab: "RDF::Vocab::EBUCore"
+        label: "Duration"
         multiple: "false"
         views: "index,show,edit"
       date:
         vocab: "RDF::DC"
         label: "Production year"
-        multiple: "false"
-        views: "index,show,edit"
-      language:
-        vocab: "RDF::DC"
-        label: "Language"
-        multiple: "false"
-        views: "index,show,edit"
-      created:
-        vocab: "RDF::DC"
-        label: "Recorded"
-        multiple: "false"
-        views: "index,show,edit"
-      content_format:
-        vocab: "RDF::DC"
-        label: "Technical info"
-        multiple: "false"
-        views: "index,show,edit"
-      description:
-        vocab: "RDF::DC"
-        label: "Info"
-        multiple: "true"
-        views: "index,show,edit"
-      source:
-        vocab: "RDF::DC"
-        label: "Source mat"
-        multiple: "false"
-        views: "index,show,edit"
-      duration:
-        vocab: "RDF::Vocab::EBUCore"
-        label: "Duration"
         multiple: "false"
         views: "index,show,edit"
       Genre:
@@ -59,42 +19,48 @@ work_types:
         views: "index,show,edit"
       Series:
         vocab: "RDF::Vocab::EBUCore"
-        label: "Series title"
+        label: "Program/Series Title"
         multiple: "false"
         views: "index,show,edit"
       alternativeTitle:
         vocab: "RDF::Vocab::EBUCore"
-        label: "Series title alt"
+        label: "Uniform Title"
         multiple: "false"
         views: "index,show,edit"
-      OriginalLanguage:
-        vocab: "RDF::Vocab::EBUCore"
-        label: "Translation"
+      put_on_by:
+        vocab: "RDF::TheaterOntology"
+        vocab_uri: "http://purl.org/theater/"
+        label: "Company"
         multiple: "false"
         views: "index,show,edit"
-      partName:
-        vocab: "RDF::Vocab::EBUCore"
-        label: "Part"
+      title:
+        vocab: "RDF::DC"
+        label: "Work Title"
         multiple: "false"
         views: "index,show,edit"
-      publicationChannelName:
-        vocab: "RDF::Vocab::EBUCore"
-        label: "Transmitter/Outlet"
-        multiple: "false"
-        views: "index,show,edit"
-      script:
-        vocab: "RDF::Vocab::EBUCore"
-        label: "script"
-        multiple: "false"
-        views: "index,show,edit"
-      Collection:
-        vocab: "RDF::Vocab::EBUCore"
-        label: "archive"
+      alternative:
+        vocab: "RDF::DC"
+        label: "Piece alt"
         multiple: "false"
         views: "index,show,edit"
       composer:
         vocab: "RDF::Vocab::MO"
         label: "Composer"
+        multiple: "false"
+        views: "index,show,edit"
+      creator:
+        vocab: "RDF::DC"
+        label: "Text Author"
+        multiple: "false"
+        views: "index,show,edit"
+      language:
+        vocab: "RDF::DC"
+        label: "Language"
+        multiple: "false"
+        views: "index,show,edit"
+      OriginalLanguage:
+        vocab: "RDF::Vocab::EBUCore"
+        label: "Translation"
         multiple: "false"
         views: "index,show,edit"
       conductor:
@@ -112,64 +78,6 @@ work_types:
         label: "Choir"
         multiple: "false"
         views: "index,show,edit"
-      singer:
-        vocab: "RDF::Vocab::MO"
-        label: "Soloist"
-        multiple: "true"
-        views: "index,show,edit"
-      Stream:
-        vocab: "RDF::Vocab::MO"
-        label: "Webcast"
-        multiple: "false"
-        views: "index,show,edit"
-      put_on_by:
-        vocab: "RDF::TheaterOntology"
-        vocab_uri: "http://purl.org/theater/"
-        label: "Company"
-        multiple: "false"
-        views: "index,show,edit"
-      ProductionCompany:
-        vocab: "RDF::Vocab::TheaterOntology"
-        vocab_uri: "http://purl.org/theater/"
-        label: "Production Co."
-        multiple: "false"
-        views: "index,show,edit"
-      FirstBroadcast:
-        vocab: "RDF::ProgrammeOntology"
-        vocab_uri: "http://purl.org/ontology/po/"
-        label: "Broadcast date"
-        multiple: "false"
-        views: "index,show,edit"
-      director:
-        vocab: "RDF::ProgrammeOntology"
-        vocab_uri: "http://purl.org/ontology/po/"
-        label: "TV Director"
-        multiple: "false"
-        views: "index,show,edit"
-      author:
-        vocab: "RDF::ProgrammeOntology"
-        vocab_uri: "http://purl.org/ontology/po/"
-        label: "Author"
-        multiple: "false"
-        views: "index,show,edit"
-      broadcaster:
-        vocab: "RDF::ProgrammeOntology"
-        vocab_uri: "http://purl.org/ontology/po/"
-        label: "Presenting Station"
-        multiple: "false"
-        views: "index,show,edit"
-      executive_producer:
-        vocab: "RDF::ProgrammeOntology"
-        vocab_uri: "http://purl.org/ontology/po/"
-        label: "Executive producer"
-        multiple: "false"
-        views: "index,show,edit"
-      producer:
-        vocab: "RDF::ProgrammeOntology"
-        vocab_uri: "http://purl.org/ontology/po/"
-        label: "producer"
-        multiple: "false"
-        views: "index,show,edit"
       choreography:
         vocab: "RDF::TelevisedOpera"
         vocab_uri: "http://dlib.indiana.edu/lib/ontology/televisedOpera/"
@@ -182,10 +90,48 @@ work_types:
         label: "Dance company"
         multiple: "false"
         views: "index,show,edit"
+      singer:
+        vocab: "RDF::Vocab::MO"
+        label: "Soloist"
+        multiple: "true"
+        views: "index,show,edit"
+      partName:
+        vocab: "RDF::Vocab::EBUCore"
+        label: "Part"
+        multiple: "false"
+        views: "index,show,edit"
+      FirstBroadcast:
+        vocab: "RDF::ProgrammeOntology"
+        vocab_uri: "http://purl.org/ontology/po/"
+        label: "Broadcast date"
+        multiple: "false"
+        views: "index,show,edit"
+      publicationChannelName:
+        vocab: "RDF::Vocab::EBUCore"
+        label: "Transmitter/Outlet"
+        multiple: "false"
+        views: "index,show,edit"
+      director:
+        vocab: "RDF::ProgrammeOntology"
+        vocab_uri: "http://purl.org/ontology/po/"
+        label: "TV Director"
+        multiple: "false"
+        views: "index,show,edit"
       stageDirector:
         vocab: "RDF::TelevisedOpera"
         vocab_uri: "http://dlib.indiana.edu/lib/ontology/televisedOpera/"
         label: "Stage director"
+        multiple: "false"
+        views: "index,show,edit"
+      script:
+        vocab: "RDF::Vocab::EBUCore"
+        label: "script"
+        multiple: "false"
+        views: "index,show,edit"
+      author:
+        vocab: "RDF::ProgrammeOntology"
+        vocab_uri: "http://purl.org/ontology/po/"
+        label: "Author"
         multiple: "false"
         views: "index,show,edit"
       adaptation:
@@ -206,6 +152,35 @@ work_types:
         label: "Constumes"
         multiple: "false"
         views: "index,show,edit"
+      ProductionCompany:
+        vocab: "RDF::Vocab::TheaterOntology"
+        vocab_uri: "http://purl.org/theater/"
+        label: "Production Co."
+        multiple: "false"
+        views: "index,show,edit"
+      broadcaster:
+        vocab: "RDF::ProgrammeOntology"
+        vocab_uri: "http://purl.org/ontology/po/"
+        label: "Presenting Station"
+        multiple: "false"
+        views: "index,show,edit"
+      executive_producer:
+        vocab: "RDF::ProgrammeOntology"
+        vocab_uri: "http://purl.org/ontology/po/"
+        label: "Executive producer"
+        multiple: "false"
+        views: "index,show,edit"
+      producer:
+        vocab: "RDF::ProgrammeOntology"
+        vocab_uri: "http://purl.org/ontology/po/"
+        label: "producer"
+        multiple: "false"
+        views: "index,show,edit"
+      created:
+        vocab: "RDF::DC"
+        label: "Recorded"
+        multiple: "false"
+        views: "index,show,edit"
       vhsDistributor:
         vocab: "RDF::TelevisedOpera"
         vocab_uri: "http://dlib.indiana.edu/lib/ontology/televisedOpera/"
@@ -222,5 +197,30 @@ work_types:
         vocab: "RDF::TelevisedOpera"
         vocab_uri: "http://dlib.indiana.edu/lib/ontology/televisedOpera/"
         label: "HV Other"
+        multiple: "false"
+        views: "index,show,edit"
+      Stream:
+        vocab: "RDF::Vocab::MO"
+        label: "Webcast"
+        multiple: "false"
+        views: "index,show,edit"
+      Collection:
+        vocab: "RDF::Vocab::EBUCore"
+        label: "archive"
+        multiple: "false"
+        views: "index,show,edit"
+      content_format:
+        vocab: "RDF::DC"
+        label: "Technical info"
+        multiple: "false"
+        views: "index,show,edit"
+      description:
+        vocab: "RDF::DC"
+        label: "Info"
+        multiple: "true"
+        views: "index,show,edit"
+      source:
+        vocab: "RDF::DC"
+        label: "Source mat"
         multiple: "false"
         views: "index,show,edit"
