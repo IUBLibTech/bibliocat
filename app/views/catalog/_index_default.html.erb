@@ -9,9 +9,9 @@
   <% end %>
 
   <% fields.each do |field, props| %>
-      <% if document.respond_to?(field) && props[:views].include?('index') %>
+      <% if !document[Solrizer.solr_name("desc_metadata__#{field}")].nil? && props[:views].include?('index') %>
           <dt class="blacklight-<%= field %>"><%= props[:label] %></dt>
-          <dd class="blacklight-<%= field %>"><%= document.send(field) %></dd>
+          <dd class="blacklight-<%= field %>"><%= document[Solrizer.solr_name("desc_metadata__#{field}")].to_sentence %></dd>
       <% end %>
   <% end %>
 

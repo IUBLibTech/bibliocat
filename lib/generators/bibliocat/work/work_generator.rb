@@ -29,7 +29,7 @@ class Bibliocat::WorkGenerator < Rails::Generators::NamedBase
   end
 
   def configure_work_type
-    template("work_type.yml.erb", "config/work_types/#{file_name}.en.yml")
+    template("work_type.yml.erb", "config/work_types/#{file_name}.yml")
   end
 
   def create_controller_spec
