@@ -1,0 +1,18 @@
+<div class="btn-group my-actions">
+  <a class="btn btn-primary dropdown-toggle user-display-name" data-toggle="dropdown" href="#">
+    <%= current_user.name.blank? ? 'Me' : current_user.name %>
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    <% include_works_link ||= can_ever_create_works? %>
+    <% if include_works_link %>
+      <li><%= link_to 'My Works', search_path_for_my_works, class: 'my-works', role: 'menuitem' %></li>
+    <% end %>
+
+    <% if include_works_link || include_collections_link %>
+      <li class="divider"></li>
+    <% end %>
+    <li><%= link_to 'Log Out', main_app.destroy_user_session_path, class: 'log-out', role: 'menuitem' %></li>
+  </ul>
+</div>
+
