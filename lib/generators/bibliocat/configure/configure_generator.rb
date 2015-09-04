@@ -16,7 +16,7 @@ end
 class Bibliocat::ConfigureGenerator < Rails::Generators::NamedBase
   source_root File.expand_path("../templates", __FILE__)
 
-  def activate_config
+  def activate_schema
     begin
       # Get work_type object in Fedora; grab first result since this search returns an array
       work_type = WorkType.find(registered_name: class_name)[0] 
