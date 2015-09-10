@@ -3,5 +3,5 @@ en:
     search:
       fields:
         facet:
-          human_readable_type_sim: Collections
+          human_readable_type_sim: "Work Types"
 
