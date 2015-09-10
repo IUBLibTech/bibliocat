@@ -46,7 +46,7 @@ gem 'spring',        group: :development
 
 
 gem "devise"
-gem "devise-guests", "~> 0.3"
+gem "devise-guests", git: 'https://github.com/cbeer/devise-guests.git' #, "~> 0.3"
 gem 'omniauth-cas'
 group :development, :test do
   gem "rspec-rails"
