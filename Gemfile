@@ -47,6 +47,7 @@ gem 'spring',        group: :development
 
 gem "devise"
 gem "devise-guests", "~> 0.3"
+gem 'omniauth-cas'
 group :development, :test do
   gem "rspec-rails"
   gem "jettywrapper"
