@@ -3,19 +3,19 @@ module BiblioWorkRdfProperties
   included do
     property :part_of, predicate: RDF::DC.isPartOf
     property :resource_type, predicate: RDF::DC.type do |index|
-      index.as :stored_searchable, :facetable
+      index.as :stored_searchable
     end
     property :title, predicate: RDF::DC.title do |index|
-      index.as :stored_searchable, :facetable
+      index.as :stored_searchable
     end
     property :alternative, predicate: RDF::DC.alternative do |index|
-      index.as :stored_searchable, :facetable
+      index.as :stored_searchable
     end
     property :creator, predicate: RDF::DC.creator do |index|
-      index.as :stored_searchable, :facetable
+      index.as :stored_searchable
     end
     property :contributor, predicate: RDF::DC.contributor do |index|
-      index.as :stored_searchable, :facetable
+      index.as :stored_searchable
     end
     property :description, predicate: RDF::DC.description do |index|
       index.type :text
@@ -26,7 +26,7 @@ module BiblioWorkRdfProperties
       index.as :stored_searchable
     end
     property :publisher, predicate: RDF::DC.publisher do |index|
-      index.as :stored_searchable, :facetable
+      index.as :stored_searchable
     end
     property :created, predicate: RDF::DC.created
 
@@ -43,10 +43,10 @@ module BiblioWorkRdfProperties
       index.as :stored_sortable
     end
     property :subject, predicate: RDF::DC.subject do |index|
-      index.as :stored_searchable, :facetable
+      index.as :stored_searchable
     end
     property :language, predicate: RDF::DC.language do |index|
-      index.as :stored_searchable, :facetable
+      index.as :stored_searchable
     end
     property :identifier, predicate: RDF::DC.identifier do |index|
       index.as :stored_searchable
