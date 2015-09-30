@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/cbeer/devise-guests.git
+  revision: 8ea012c1e3cd637d28158fbf0472e8c56a18a54c
+  specs:
+    devise-guests (0.4.0)
+      devise
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -117,8 +124,6 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    devise-guests (0.3.3)
-      devise
     diff-lcs (1.2.5)
     ebnf (0.3.9)
       rdf (~> 1.1)
@@ -147,6 +152,7 @@ GEM
       signet (~> 0.6)
     haml (4.0.7)
       tilt
+    hashie (3.4.2)
     hike (1.2.3)
     hooks (0.3.6)
       uber (~> 0.0.4)
@@ -264,6 +270,13 @@ GEM
       activesupport
       nokogiri (>= 1.4.2)
       solrizer (~> 3.3)
+    omniauth (1.2.2)
+      hashie (>= 1.2, < 4)
+      rack (~> 1.0)
+    omniauth-cas (1.1.0)
+      addressable (~> 2.3)
+      nokogiri (~> 1.5)
+      omniauth (~> 1.2.0)
     orm_adapter (0.5.0)
     rack (1.5.2)
     rack-protection (1.5.3)
@@ -506,11 +519,12 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   config
   devise
-  devise-guests (~> 0.3)
+  devise-guests!
   jbuilder (~> 2.0)
   jettywrapper
   jquery-rails
   listen (~> 3.0)
+  omniauth-cas
   rails (= 4.1.6)
   rdf-vocab
   rspec-rails

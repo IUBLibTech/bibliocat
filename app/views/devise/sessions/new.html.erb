@@ -1,0 +1,7 @@
+<%# Modified copy of gemsets's /devise-3.4.1/app/views/devise/sessions/new.html.erb to remove non-CAS options, which now raise exceptions %>
+<h3>Log in</h3>
+
+<%= render "devise/shared/links" %>
+
+<h4>CAS Sign Out</h4>
+<%= link_to 'Sign out of IU CAS entirely', 'https://cas.iu.edu/cas/logout' %>
