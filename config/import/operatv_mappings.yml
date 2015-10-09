@@ -1,0 +1,143 @@
+--- # OperaTV batch import mappings configuration
+batch_import_config:
+  work_type: TelevisedOpera  # The work type class name
+  owner: dlpierce@indiana.edu  # The username that imported records will belong too
+  fieldmap:
+    # Format: [csv_column_label] => {target: [work_predicate name]} ("target: nil" discards data)
+    # Options: lookup: Translate data using specified lookup table
+    #          delimiter: Split on these characters and insert multiple records
+    ID:
+      target:
+    MP_NO:
+      target:
+    DURATION:
+      target: :duration
+    PRODYEAR:
+      target: :date
+    GENRE:
+      target: :Genre
+      lookup: genre
+    TITLE:
+      target: :Series
+    TITLE_UNIFORM:
+      target: :alternativeTitle
+    COMPANY:
+      target: :put_on_by
+    PIECE:
+      target: :title
+    COMPOSER:
+      target: :composer
+      delimiter: ;
+    UNUSED1:
+      target:
+    TEXT:
+      target: :creator
+      delimiter: ;
+    LANGUAGE:
+      target: :language
+    TRANSLATION:
+      target: :OriginalLanguage
+      delimiter: ;
+    CONDUCTOR:
+      target: :conductor
+      delimiter: ;
+    ORCHESTRA:
+      target: :Orchestration
+    CHOIR:
+      target: :MusicGroup
+    CHOREOGRAPHY:
+      target: :choreography
+      delimiter: ;
+    DANCE_CO:
+      target: :danceCompany
+    SOLOISTS:
+      target: :singer
+      delimiter: ','
+    PART:
+      target: :partName
+      delimiter: ;
+    BROADCASTDATE:
+      target: :FirstBroadcast
+      delimiter: ;
+    XTV:
+      target: :publicationChannelName
+    TV_DIR:
+      target: :director
+      delimiter: ;
+    STAGE_DIR_PROD:
+      target: :stageDirector
+      delimiter: ;
+    SCRIPT:
+      target: :script
+      delimiter: ;
+    AUTHOR:
+      target: :author
+      delimiter: ;
+    SETS:
+      target: :sets
+      delimiter: ;
+    COSTUMES:
+      target: :costumes
+      delimiter: ;
+    UNUSED2:
+      target:
+    UNUSED3:
+      target:
+    PRODUCTION_CO:
+      target: :ProductionCompany
+      delimiter: ;
+    EXECPROD:
+      target: :executive_producer
+      delimiter: ;
+    PRODUCER:
+      target: :producer
+      delimiter: ;
+    RECORDED:
+      target: :created
+    UNUSED4:
+      target:
+    HV_VHS:
+      target: :vhsDistributor
+    HV_DVD:
+      target: :dvdDistributor
+    HV_OTHER:
+      target: :otherDistributor
+    WEBCAST:
+      target: :Stream
+    ARCHIVE:
+      target: :source
+      delimiter: ;
+    TECHINFOR:
+      target: :content_format
+      delimiter: ;
+    INFO:
+      target: :description
+    MEMO1:
+      target: :description
+    MEMO2:
+      target: :description
+    SOURCEMAT:
+      target: :description
+    ALLTEXT:
+      target:
+    PIECE_ALT:
+      target: :alternative
+      delimiter: ;
+    ADAPTATION:
+      target: :adaptation
+      delimiter: ;
+    PRESENT_STATION:
+      target: :broadcaster
+    PRODYEARNUM:
+      target:
+  lookup:
+    genre:
+      A: Archival (Usually not available for braodcast or commercial use)
+      D: Documentary
+      O: Opera
+      R: Oratorio
+      S: Screen, produced for cinema
+      T: Operetta/Music Theater/Musical
+      X: Other
+      DO: Documentary - Opera
+      DT: Documentary - Operetta/Music Theater/Musical

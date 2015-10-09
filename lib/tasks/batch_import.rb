@@ -7,8 +7,62 @@ module Bibliocat
   module Ingest
 
     module Tasks
+      def Tasks.batch_import(config_file, data_file)
+        Settings.add_source! config_file
+        Settings.reload!
+        batch_config = Settings.batch_import_config.to_hash
 
-      def Tasks.batch_import(user_email)
+        work_type = batch_config[:work_type].constantize
+        owner = User.find_by_email(batch_config[:owner])
+
+        CSV.foreach(data_file, headers:true) do |row|
+          work_attributes = {}
+          row.each do |label, data|
+            col_conf = batch_config[:fieldmap][label.upcase.to_sym]
+
+            # Handle lookup option
+            if col_conf.has_key? :lookup
+              data = batch_config[:lookup][col_conf[:lookup].to_sym][data.upcase.to_sym]
+            end
+
+            # Handle delimiter option
+            if col_conf.has_key? :delimiter
+              data = data.split col_conf[:delimiter]
+            end
+
+            # Write data to attribute
+            unless col_conf[:target].nil?
+              target = col_conf[:target].to_sym
+              if data.is_a? Enumerable
+                work_attributes[target] = [work_attributes[target]].compact unless work_attributes[target].is_a? Enumerable
+                work_attributes[target] = work_attributes[target] + data
+              else  # data.is_a? String
+                if work_attributes[target].blank?
+                  work_attributes[target] = data
+                elsif work_attributes[target].is_a? String
+                  work_attributes[target] = "#{work_attributes[target]} #{data}"
+                elsif work_attributes[target].is_a? Enumerable
+                  work_attributes[target] << data
+                else
+                  work_attributes[target] = data
+                end
+              end
+            end
+          end
+
+          # Create work and save
+          work = Worthwhile::CurationConcern.actor(work_type.new, owner, work_attributes)
+          if work.create
+            print "Work object #{work.curation_concern.pid} successfully created.\n"
+          else
+            print "ERROR: Could not save work: #{work.title}"
+            print work.curation_concern.errors.messages
+            return
+          end
+        end
+      end
+
+      def Tasks.old_batch_import(user_email)
         Helpers::ingest_folders.each_with_index do |subdir, index|
           print "Ingesting batch directory #{index + 1} of #{Helpers::ingest_folders.size}: #{subdir}\n"
           manifest_files = Dir.glob(subdir + "/" + "manifest*.yml").select { |f| File.file?(f) }
