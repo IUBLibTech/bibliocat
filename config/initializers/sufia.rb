@@ -102,7 +102,7 @@ Sufia.config do |config|
   # config.enable_ffmpeg = true
 
   # Specify the Fedora pid prefix:
-  # config.id_namespace = "sufia"
+  config.id_namespace = "bibliocat"
 
   # Specify the path to the file characterization tool:
   # config.fits_path = "fits.sh"
