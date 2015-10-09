@@ -6,11 +6,16 @@ class WorkType < ActiveFedora::Base
   
   has_attributes :registered_name, :display_name, :is_type_of, datastream: 'descMetadata',  multiple: false
 
+  def initialize(attributes = {})
+    attributes = {namespace: 'worktype'}.merge(attributes)
+    super(attributes)
+  end
+
   # Setter for the schema datastream
   def schema_file=(file)
     ds = @datastreams['metadataSchema']
     ds.content = file
-    ds.mimeType = 'application/xml'
+    ds.mimeType = 'application/x-yaml'
     ds.dsLabel = file.inspect.sub /.*\/(.*)\>/, '\1'
   end
 
