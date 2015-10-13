@@ -7,18 +7,31 @@ module Bibliocat
   module Ingest
 
     module Tasks
-      def Tasks.batch_import(config_file, data_file)
+      def Tasks.batch_import(config_file, data_file, start_line = 1)
         Settings.add_source! config_file
         Settings.reload!
         batch_config = Settings.batch_import_config.to_hash
 
         work_type = batch_config[:work_type].constantize
         owner = User.find_by_email(batch_config[:owner])
+        line = 0
 
         CSV.foreach(data_file, headers:true) do |row|
+          line += 1
+          # Skip ahead to the start line
+          next if line < start_line
+
           work_attributes = {}
           row.each do |label, data|
             col_conf = batch_config[:fieldmap][label.upcase.to_sym]
+
+            # Skip empty data fields
+            next if data.blank?
+
+            # Filter out unprintable characters.
+            # Fixes illegal character exceptions in Solr.
+            data.strip!
+            data.gsub!(/[^[:print:]]/, '')
 
             # Handle lookup option
             if col_conf.has_key? :lookup
@@ -31,11 +44,14 @@ module Bibliocat
             end
 
             # Write data to attribute
+            # Throw away data for nil targets
             unless col_conf[:target].nil?
               target = col_conf[:target].to_sym
-              if data.is_a? Enumerable
+              # Make sure multivalued fields are in an array
+              if data.is_a? Enumerable or work_type.defined_attributes[target].try(:multiple)
                 work_attributes[target] = [work_attributes[target]].compact unless work_attributes[target].is_a? Enumerable
-                work_attributes[target] = work_attributes[target] + data
+                data = [data] unless data.is_a? Enumerable
+                work_attributes[target].concat data
               else  # data.is_a? String
                 if work_attributes[target].blank?
                   work_attributes[target] = data
@@ -51,13 +67,15 @@ module Bibliocat
           end
 
           # Create work and save
+          next if work_attributes.empty?
           work = Worthwhile::CurationConcern.actor(work_type.new, owner, work_attributes)
           if work.create
             print "Work object #{work.curation_concern.pid} successfully created.\n"
           else
-            print "ERROR: Could not save work: #{work.title}"
-            print work.curation_concern.errors.messages
-            return
+            print "ERROR: Could not save work from line #{line}!\n"
+            print "Data: #{work_attributes}\n"
+            print "Reason: #{work.curation_concern.errors.messages}\n"
+            exit(1)
           end
         end
       end

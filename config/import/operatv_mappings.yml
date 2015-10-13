@@ -130,6 +130,8 @@ batch_import_config:
       target: :broadcaster
     PRODYEARNUM:
       target:
+    MP_NO:
+      target: :description
   lookup:
     genre:
       A: Archival (Usually not available for braodcast or commercial use)
