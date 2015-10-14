@@ -41,6 +41,9 @@ module Bibliocat
             # Handle delimiter option
             if col_conf.has_key? :delimiter
               data = data.split col_conf[:delimiter]
+              data.map! do |i|
+                i.strip
+              end
             end
 
             # Write data to attribute
