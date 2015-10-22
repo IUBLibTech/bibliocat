@@ -131,10 +131,10 @@ batch_import_config:
     PRODYEARNUM:
       target:
     MP_NO:
-      target: :description
+      target: :identifier
   lookup:
     genre:
-      A: Archival (Usually not available for braodcast or commercial use)
+      A: Archival (Usually not available for broadcast or commercial use)
       D: Documentary
       O: Opera
       R: Oratorio

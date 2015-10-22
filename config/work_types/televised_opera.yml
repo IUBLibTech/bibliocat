@@ -224,3 +224,8 @@ work_types:
         label: "Source mat"
         multiple: "true"
         views: "index,show,edit"
+      identifier:
+        vocab: "RDF::Vocab::EBUCore"
+        label: "Legacy ID (MP_NO)"
+        multiple: "false"
+        views: "show, edit"
